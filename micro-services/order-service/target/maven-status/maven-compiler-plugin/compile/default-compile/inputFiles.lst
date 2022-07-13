@@ -1,0 +1,10 @@
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\model\Order.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\repository\OrderRepository.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\OrderServiceApplication.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\dto\OrderRequest.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\controller\OrderController.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\service\OrderService.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\model\OrderItems.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\dto\InventoryResponse.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\dto\OrderItemsDto.java
+E:\MIcroserviceProject\micro-services\order-service\src\main\java\com\itransform\orderservice\config\WebClientConfig.java
