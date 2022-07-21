@@ -1,0 +1,23 @@
+<div style="text-align: center;">
+    <h3>{{message}}</h3>
+</div>
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary">Create a Product</mat-toolbar>
+        <form fxLayoutAlign="stretch" fxLayout="column" class="creation-form" [formGroup]="creationGroup" (ngSubmit)="addProduct()">
+            <mat-form-field appearance="fill">
+                <input matInput placeholder="Id" formControlName="id">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <textarea matInput placeholder="Description" formControlName="description"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <input matInput placeholder="Price" formControlName="price">
+            </mat-form-field>
+            <button mat-raised-button type="submit">Create</button>
+        </form>
+    </mat-card>
+</div>
