@@ -1,3 +1,5 @@
+import { ApiResponse } from './../model/api.response';
+import { Products } from './../model/product.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,20 +11,32 @@ export class Product {
     public price: string
   ){}
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductServiceService {
+  findAllProductsById(id: string) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http:HttpClient) { }
   
-
-  public saveProduct(product: Product){
-    console.log('adding a Product...');
-    return this.http.post ('http://localhost:8001/addProduct',product);
-  }
   public findAllProducts(){
     console.log('finding all products...')
     return this.http.get<Product[]>('http://localhost:8001/findAllProducts'); 
+  }
+
+  createProduct(product : Products):Observable<ApiResponse>{
+    return this.http.post<ApiResponse>('http://localhost:8001/addProduct',product);
+  }
+  deletedProduct(id : string):Observable<ApiResponse>{
+    return this.http.delete<ApiResponse>('http://localhost:8001/deleteProduct/' + id);
+  }
+  updateProduct(id: string, products: Products): Observable<ApiResponse> {
+    return this.http.put<ApiResponse>('http://localhost:8001/updateProduct/' + products.id, products);
+  }
+  findProductById(id: string): Observable<any> {
+    return this.http.get('http://localhost:8001/findAllProductsById/ '+ id);
   }
 }

@@ -1,6 +1,6 @@
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="25">
-        <mat-toolbar color="primary">Add Product</mat-toolbar>
+        <mat-toolbar color="primary">Update Product</mat-toolbar>
         <div [hidden]="submitted">
             <form fxLayoutAlign="stretch" fxLayout="column" class="form-group" (ngSubmit)="onSubmit()">
                 <mat-form-field>
@@ -15,7 +15,7 @@
 
                 <mat-form-field>
                     <textarea matInput placeholder="Description" type="text" class="form-control" id="description" required [(ngModel)]="products.description"
-                        name="description"></textarea>
+                        name="description"><textarea></textarea>
                 </mat-form-field>
 
                 <mat-form-field>

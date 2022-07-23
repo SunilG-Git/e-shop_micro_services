@@ -18,12 +18,14 @@ import { ProductComponent } from './product/product.component';
 import { AuthServiceService } from './service/auth-service.service';
 import { ProductServiceService } from './service/product-service.service';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { UpdateProductComponent } from './update-product/update-product.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ProductComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,

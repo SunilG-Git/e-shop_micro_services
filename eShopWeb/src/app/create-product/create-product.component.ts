@@ -1,6 +1,8 @@
-import { Product, ProductServiceService } from './../service/product-service.service';
+import { ApiResponse } from './../model/api.response';
+import { ProductServiceService } from './../service/product-service.service';
+import { Products } from './../model/product.model';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
@@ -9,31 +11,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateProductComponent implements OnInit {
 
-  //@ts-ignore
-  product: Product;
+  products: Products = new Products();
+  submitted = false;
 
-  //@ts-ignore
-  creationGroup: FormGroup;
-  
-  message:any;
-
-  constructor(private productService : ProductServiceService) { }
+  constructor(private productService:ProductServiceService,
+    private router: Router) { }
 
   ngOnInit() {
-    this.creationGroup =new FormGroup({
-      id: new FormControl('',[Validators.required]),
-      name : new FormControl('',[Validators.required]),
-      description: new FormControl('',[Validators.required]),
-      price: new FormControl('',[Validators.required])
-    });
   }
-  
-  public addProduct() {
-    if(this.creationGroup.valid){
-      let resp = this.productService.saveProduct(this.product);
-      resp.subscribe((data)=>this.message = data);
-    }else{
-      console.log('invalid data');
-    } 
+
+
+  onSubmit() {
+    this.submitted = true;
+    this. productService.createProduct(this.products)
+    .subscribe(data => console.log(data), error => console.log(error));
+    this.products = new Products();
+    this.router.navigate(['/addProduct']);
   }
 }
