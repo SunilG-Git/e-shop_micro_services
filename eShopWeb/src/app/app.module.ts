@@ -18,14 +18,15 @@ import { ProductComponent } from './product/product.component';
 import { AuthServiceService } from './service/auth-service.service';
 import { ProductServiceService } from './service/product-service.service';
 import { CreateProductComponent } from './create-product/create-product.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ConfirmationPopoverModule } from "angular-confirmation-popover";
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ProductComponent,
-    CreateProductComponent,
-    UpdateProductComponent
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +36,15 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
     MatCardModule,
     MatToolbarModule,
     HttpClientModule,
     FormsModule,
+    ConfirmationPopoverModule.forRoot({
+      confirmButtonType: 'danger', // set defaults here
+    }),
     ReactiveFormsModule
   ],
   providers: [AuthServiceService,ProductServiceService],

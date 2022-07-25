@@ -16,6 +16,11 @@ import { ApiResponse } from '../model/api.response';
 })
 export class ProductComponent implements OnInit {
 
+  popoverTitle = 'Please Confirm!!';
+  popoverMessage = 'Are You sure?';
+  confirmClicked = false;
+  cancelClicked = false;
+
   //@ts-ignore
   products : Products;
 
@@ -23,15 +28,14 @@ export class ProductComponent implements OnInit {
   product : Product[];
 
   //@ts-ignore
-  Products: Observable<ApiResponse>;
+  products: Observable<ApiResponse>;
+
   //@ts-ignore
   Product: Observable<Product[]>;
   
   constructor(
     private productService:ProductServiceService ,
     private router: Router) { 
-      
-   
   }
 
   ngOnInit(): void {
@@ -41,7 +45,7 @@ export class ProductComponent implements OnInit {
     }
     handleSuccessfulResponse(response: Product[]) {
       this.product = response;
-      }
+    }
 
   deleteProduct(id: string) {
     this.productService.deletedProduct(id)
@@ -51,10 +55,6 @@ export class ProductComponent implements OnInit {
           this.Product = this.productService.findAllProducts();
         },
         error => console.log(error));
-  }
-
-  updateProduct(id: string){
-    this.router.navigate(['update', id]);
   }
 }
 

@@ -2,30 +2,45 @@
     <mat-card fxFlex="25">
         <mat-toolbar color="primary">Add Product</mat-toolbar>
         <div [hidden]="submitted">
-            <form fxLayoutAlign="stretch" fxLayout="column" class="form-group" (ngSubmit)="onSubmit()">
+            <form fxLayoutAlign="stretch" fxLayout="column" class="form-group" [formGroup]="creationGroup"
+                (ngSubmit)="onSubmit()">
                 <mat-form-field>
-                 
-                    <input matInput placeholder="ID" type="text" class="form-control" id="id" required [(ngModel)]="products.id" name="id">
+
+                    <input matInput placeholder="ID" type="text" class="form-control" id="id" required
+                        [(ngModel)]="products.id" formControlName="id" name="id">
                 </mat-form-field>
 
                 <mat-form-field>
-            
-                    <input matInput placeholder="Name"type="text" class="form-control" id="name" required [(ngModel)]="products.name" name="name">
+
+                    <input matInput placeholder="Name" type="text" class="form-control" id="name" required
+                        [(ngModel)]="products.name" formControlName="name" name="name">
+                    <span class="error" *ngIf="name?.errors?.['minlength']">
+                        Name must be at least 4 characters long.</span>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <textarea matInput placeholder="Description" type="text" class="form-control" id="description" required [(ngModel)]="products.description"
+                    <textarea matInput placeholder="Description" type="text" class="form-control" id="description"
+                        required [(ngModel)]="products.description" formControlName="description"
                         name="description"></textarea>
+                    <span class="error" *ngIf="description?.errors?.['minlength']">
+                        Name must be at least 8 characters long.</span>
                 </mat-form-field>
 
                 <mat-form-field>
-                
-                    <input matInput placeholder="Price" type="text" class="form-control" id="price" required [(ngModel)]="products.price"
-                        name="price">
+
+                    <input matInput placeholder="Price" type="text" class="form-control" id="price" required
+                        [(ngModel)]="products.price" formControlName="price" name="price">
+                    <div *ngIf="!creationGroup.controls['price'].valid && creationGroup.controls['price'].touched">
+                        <div class="error" *ngIf="creationGroup.controls['price'].errors?.['required']">
+                            Price is required
+                        </div>
+                        <span class="error" *ngIf="creationGroup.controls['price'].errors?.['pattern']">
+                            Only numbers are Allowed</span>
+                    </div>
                 </mat-form-field>
 
 
-                <button mat-raised-button class="btn btn-success">Submit</button>
+                <button mat-raised-button color="primary" class="btn">Submit</button>
             </form>
 
         </div>

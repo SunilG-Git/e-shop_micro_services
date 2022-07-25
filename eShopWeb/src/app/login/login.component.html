@@ -4,13 +4,15 @@
         <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProcess()">
             <mat-form-field>
               <input matInput placeholder="Username" formControlName="username" >
+              <span class="error" *ngIf="username?.invalid && username?.touched" >Username is Required</span>
             </mat-form-field> 
           
           
             <mat-form-field>
                 <input matInput type="password" placeholder="Password" formControlName="password">
+                <span class="error" *ngIf="password?.invalid && password?.touched" >Password is Required</span>
               </mat-form-field>
-              <button mat-raised-button type="submit">Login</button>
+              <button mat-raised-button color="primary" type="submit">Login</button>
           </form>
     </mat-card>
 </div>
