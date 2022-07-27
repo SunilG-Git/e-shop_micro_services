@@ -1,15 +1,9 @@
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
-    <mat-card fxFlex="25">
+    <mat-card fxFlex="28">
         <mat-toolbar color="primary">Add Product</mat-toolbar>
         <div [hidden]="submitted">
             <form fxLayoutAlign="stretch" fxLayout="column" class="form-group" [formGroup]="creationGroup"
                 (ngSubmit)="onSubmit()">
-                <mat-form-field>
-
-                    <input matInput placeholder="ID" type="text" class="form-control" id="id" required
-                        [(ngModel)]="products.id" formControlName="id" name="id">
-                </mat-form-field>
-
                 <mat-form-field>
 
                     <input matInput placeholder="Name" type="text" class="form-control" id="name" required
@@ -40,7 +34,7 @@
                 </mat-form-field>
 
 
-                <button mat-raised-button color="primary" class="btn">Submit</button>
+                <button mat-raised-button color="primary" class="btn" [disabled]="!creationGroup.valid" >Submit</button>
             </form>
 
         </div>

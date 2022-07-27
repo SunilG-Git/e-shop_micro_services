@@ -1,0 +1,12 @@
+.card1{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    border: 3px;
+}
+.card{
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    border: 3px;
+}

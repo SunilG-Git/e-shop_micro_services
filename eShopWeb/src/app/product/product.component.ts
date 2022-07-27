@@ -54,7 +54,7 @@ export class ProductComponent implements OnInit {
           console.log(data);
           this.Product = this.productService.findAllProducts();
         },
-        error => console.log(error));
+      error => console.log(error));
   }
 }
 

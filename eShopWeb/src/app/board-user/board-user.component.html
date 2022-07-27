@@ -1,0 +1,35 @@
+
+<div class="panel panel-primary">
+    <div class= panel-heading>
+        <h2>PRODUCTS</h2>
+      </div>
+      <div class="panel-body">
+        <table  id="datatable-example" class="display" width="100%">
+          <thead>
+          <tr>
+            
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of product">
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            
+            <td>
+              <button>
+            
+           Order
+            </button>
+            </td>
+          <!-- <td><button  mat-raised-button color="warn" style='margin-right:16px' (click)="deleteProduct(product.id)" class="btn">Delete</button>
+         </td> -->
+          </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
