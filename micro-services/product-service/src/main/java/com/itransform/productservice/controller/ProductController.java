@@ -25,15 +25,10 @@ public class ProductController {
     private ProductRepository productRepository;
 
 
-
-
-
-
-
     @PostMapping("/addProduct")
-    public String saveProduct(@RequestBody Product product){
+    public void saveProduct(@RequestBody Product product){
         productRepository.save(product);
-        return "Added product with id : " +product.getId();
+
     }
 
     @RequestMapping("/findAllProducts")
@@ -63,8 +58,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/deleteProduct/{id}")
-    public String deleteProduct(@PathVariable("id") String id){
+    public void deleteProduct(@PathVariable("id") String id){
         productRepository.deleteById(id);
-        return "product deleted with id : "+id;
     }
 }

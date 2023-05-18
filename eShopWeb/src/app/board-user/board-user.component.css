@@ -1,4 +1,7 @@
 h2{
     text-align: center;
-   
+    color: blue;
+}
+.mat-elevation-z8{
+    width: 1200px;
 }

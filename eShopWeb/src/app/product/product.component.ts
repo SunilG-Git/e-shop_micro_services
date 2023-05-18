@@ -1,11 +1,18 @@
 import { Products } from './../model/product.model';
 import { ProductServiceService } from './../service/product-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Product } from '../service/product-service.service';
 import { Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../model/api.response';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+
+import { CreateProductComponent } from '../create-product/create-product.component';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -20,42 +27,78 @@ export class ProductComponent implements OnInit {
   popoverMessage = 'Are You sure?';
   confirmClicked = false;
   cancelClicked = false;
+  updateForm: FormGroup = new FormGroup({});
 
-  //@ts-ignore
-  products : Products;
+  productToUpdate = {
+    id:'',
+    name: '',
+    description: '',
+    price: '',
+  };
 
-  //@ts-ignore
-  product : Product[];
 
-  //@ts-ignore
-  products: Observable<ApiResponse>;
+  constructor(private dialog: MatDialog,private productService:ProductServiceService ,private router: Router,
+    private fb: FormBuilder,
+    private toastr:ToastrService) {
 
-  //@ts-ignore
-  Product: Observable<Product[]>;
-  
-  constructor(
-    private productService:ProductServiceService ,
-    private router: Router) { 
-  }
+      this.updateForm = fb.group({
+        name: ['',[Validators.required]],
+        description: ['',[Validators.required]],
+        price: ['',[Validators.required]],
+      
+      });
+     }
+
+
+  @ViewChild(MatPaginator) paginator!:MatPaginator;
+  @ViewChild(MatSort) sort!:MatSort;
+  products!: Products[];
+  finalProductdata:any;
+
 
   ngOnInit(): void {
-    this.productService.findAllProducts().subscribe(
-      response => this.handleSuccessfulResponse(response),
-    );
-    }
-    handleSuccessfulResponse(response: Product[]) {
-      this.product = response;
+    this.LoadProduct();
+  }
+
+  displayColums: string[] = ["id","name", "description", "price","action"]
+
+ 
+
+  LoadProduct() {
+    this.productService.findAllProducts().subscribe(response => {
+      this.products = response;
+      this.finalProductdata=new MatTableDataSource<Products>(this.products);
+      this.finalProductdata.paginator=this.paginator;
+      this.finalProductdata.sort=this.sort;
+    });
+  }
+
+  edit(products: any) {
+    this.productToUpdate = products;
+  }
+
+  updateProduct() {
+    this.productService.updateProduct(this.productToUpdate.id,this.productToUpdate).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.updateForm.reset({});
+        this.toastr.success("Updated Succesfully");
+        this.LoadProduct();
+      },
+      error: (e: any) => this.toastr.error("This record is already present")
+
+    });
+  }
+
+  
+  deleteProduct(id: any) {
+      this.productService.deletedProduct(id).subscribe((res) => {
+        console.log(res);
+        this.LoadProduct();
+      });
     }
 
-  deleteProduct(id: string) {
-    this.productService.deletedProduct(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.Product = this.productService.findAllProducts();
-        },
-      error => console.log(error));
-  }
+    get f(){return this.updateForm.controls;}
 }
 
 

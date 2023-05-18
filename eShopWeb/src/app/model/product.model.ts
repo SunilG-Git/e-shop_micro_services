@@ -1,8 +1,8 @@
 
 export class Products{
-    id!: string;
-    name!: string;
-    description!: string;
-    price!: string;
-  static id: string;
+    id?: any;
+    name?: any;
+    description?: any;
+    price?: any;
+  static id?: any;
 }

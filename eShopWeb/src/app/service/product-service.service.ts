@@ -22,11 +22,12 @@ export class ProductServiceService {
 
   constructor(private http:HttpClient) { }
   
-  public findAllProducts(){
-    console.log('finding all products...')
+  public findAllProducts():Observable<Product[]>{
     return this.http.get<Product[]>('http://localhost:8001/findAllProducts'); 
   }
-
+  // GetallTarget(): Observable<TargetNode[]> {
+  //   return this.http.get<TargetNode[]>(this.apiurl+'/list');
+  // }
   createProduct(product : Products):Observable<ApiResponse>{
     return this.http.post<ApiResponse>('http://localhost:8001/addProduct',product);
   }

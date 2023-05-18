@@ -10,7 +10,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.0.5",
     "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
@@ -25,6 +24,7 @@
     "angular-datatables": "^13.1.0",
     "datatables.net": "^1.12.1",
     "datatables.net-dt": "^1.12.1",
+    "ngx-toastr": "^15.2.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -2,13 +2,25 @@ h3{
     text-align: center;
  }
  
- .error{
-    color: red;
+ div.form
+ {
+     display: block;
+     text-align: center;
  }
- .mat-card{
-  
-   top: 20%;
-   left: 1%;
-   
+ form
+ {
+     display: inline-block;
+     margin-left: auto;
+     margin-right: auto;
+     text-align: left;
+ }
+ .form-group{
+     padding: 1px;
+ }
+ .card{
+     padding: 30px;
+ }
+ span{
+     color: red;
  }
  
